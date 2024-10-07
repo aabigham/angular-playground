@@ -1,0 +1,50 @@
+<!--TEMPLATE DRIVEN-->
+<!--<form #formElement="ngForm" (ngSubmit)="onLogin(formElement)">-->
+<!--  <h2>Login</h2>-->
+
+<!--  <div class="control-row">-->
+<!--    <div class="control no-margin">-->
+<!--      <label for="email">Email</label>-->
+<!--      <input id="email" type="email" name="email"-->
+<!--             #email="ngModel" ngModel required email/>-->
+<!--    </div>-->
+
+<!--    <div class="control no-margin">-->
+<!--      <label for="password">Password</label>-->
+<!--      <input id="password" type="password" name="password"-->
+<!--             #password="ngModel" ngModel required minlength="6"/>-->
+<!--    </div>-->
+
+<!--    <button class="button">Login</button>-->
+<!--  </div>-->
+
+<!--  @if (email.touched && email.dirty && email.invalid) {-->
+<!--    <p class="control-error">Invalid email</p>-->
+<!--  }-->
+<!--  @if (password.touched && password.dirty && password.invalid) {-->
+<!--    <p class="control-error">Invalid pwd</p>-->
+<!--  }-->
+<!--</form>-->
+
+<!--REACTIVE-->
+<form [formGroup]="form" (ngSubmit)="onLogin()">
+  <h2>Login</h2>
+
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <input id="email" type="email" [formControl]="form.controls.email"/>
+    </div>
+
+    <div class="control no-margin">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password"/>
+    </div>
+
+    <button class="button">Login</button>
+  </div>
+
+  @if (isEmailInvalid || isPasswordInvalid) {
+    <p class="control-error">Invalid values</p>
+  }
+</form>
